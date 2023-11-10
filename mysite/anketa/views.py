@@ -6,6 +6,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, CreateView, DetailView, UpdateView, ListView
 
 from mysite.anketa.models import Vopros
+from mysite.car.models import MyCar
+
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class VoprosView(ListView):
@@ -31,7 +33,7 @@ class VoprosUpdate(UpdateView):
 	success_url = '/car/mycar/'
 
 	def get_context_data(self, *, object_list=None, **kwargs):
-		context = super(MyCarUpdate,self).get_context_data(**kwargs)
+		context = super(VoprosUpdate,self).get_context_data(**kwargs)
 		context['sometry'] = self.model._meta.verbose_name
 		context['slovar'] = {'name','color'}
 		context['secslovar'] = {'nomb'}
@@ -41,13 +43,13 @@ class VoprosUpdate(UpdateView):
 		return context
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class MyCarDetail(DetailView):
-	model = MyCar
+class VoprosDetail(DetailView):
+	model = Vopros
 	context_object_name = 'mycar_one'
 	success_url = '/car/mycar/'
 
 	def get_context_data(self, *, object_list=None, **kwargs):
-		context = super(MyCarDetail,self).get_context_data(**kwargs)
+		context = super(VoprosDetail,self).get_context_data(**kwargs)
 		context['sometry'] = self.model._meta.verbose_name
 		context['slovar'] = {'name','color'}
 		context['secslovar'] = {'nomb'}
@@ -57,15 +59,15 @@ class MyCarDetail(DetailView):
 		return context
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class MyCarCreate(CreateView):
-	model = MyCar
+class VoprosCreate(CreateView):
+	model = Vopros
 	context_object_name = 'mycar_one'
 	success_url = '/car/mycar/'
 
 	template_name_suffix = '_create_form'
 	fields = '__all__'
 	def get_context_data(self, *, object_list=None, **kwargs):
-		context = super(MyCarCreate,self).get_context_data(**kwargs)
+		context = super(VoprosCreate,self).get_context_data(**kwargs)
 		context['sometry'] = self.model._meta.verbose_name
 		context['model'] = self.model
 		context['slovar'] = {'name','color'}
@@ -75,8 +77,8 @@ class MyCarCreate(CreateView):
 		return context
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class MyCarDelete(DeleteView):
-	model = MyCar
+class VoprosDelete(DeleteView):
+	model = Vopros
 	success_url = '/car/mycar/'
 
 

@@ -71,7 +71,7 @@ class Polzovatel(models.Model):
 class Vopros(models.Model):
     title = models.TextField(max_length=50, verbose_name="Вопрос")
     score = models.IntegerField(default=0, verbose_name="Балл")
-    navik1 = models.ForeignKey(Naviki, on_delete=models.CASCADE, related_name='Навык')
+    navik1 = models.ForeignKey(Naviki, on_delete=models.CASCADE, related_name='Навык1')
 
     class Meta:
         ordering = ["-title"]
@@ -87,7 +87,7 @@ class Vopros(models.Model):
 
 class Otvet(models.Model):
     title = models.ForeignKey(Polzovatel, on_delete=models.CASCADE, related_name='Пользователь')
-    navik2 = models.ForeignKey(Naviki, on_delete=models.CASCADE, related_name='Навык')
+    navik2 = models.ForeignKey(Naviki, on_delete=models.CASCADE, related_name='Навык2')
     score = models.IntegerField(default=0, verbose_name="Балл")
     date = models.DateField(auto_now_add=True)
 
@@ -105,7 +105,7 @@ class Otvet(models.Model):
 
 class ModelProf(models.Model):
     title = models.ForeignKey(Professia, on_delete=models.CASCADE, related_name='Профессия')
-    navik3 = models.ForeignKey(Naviki, on_delete=models.CASCADE, related_name='Навык')
+    navik3 = models.ForeignKey(Naviki, on_delete=models.CASCADE, related_name='Навык3')
     score = models.IntegerField(default=0, verbose_name="Количество баллов")
 
     class Meta:
@@ -139,7 +139,7 @@ class EmptyCert(models.Model):
 
 class UserCert(models.Model):
     title = models.ForeignKey(EmptyCert, on_delete=models.CASCADE, related_name='Сертификат')
-    polzovatel = models.ForeignKey(Polzovatel, on_delete=models.CASCADE, related_name='Пользователь')
+    polzovatel = models.ForeignKey(Polzovatel, on_delete=models.CASCADE, related_name='Пользователь1')
     glavnavik = models.IntegerField(default=0, verbose_name="Основной навык")
     vsenaviki = models.TextField(max_length=50, verbose_name="Все навыки")
     date = models.DateField(auto_now_add=True)
