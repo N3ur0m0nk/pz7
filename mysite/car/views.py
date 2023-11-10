@@ -6,7 +6,7 @@ from django.views.generic import DeleteView, CreateView, DetailView, UpdateView,
 
 from mysite.car.models import MyCar
 
-item_for_page =15
+item_for_page = 15
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class MyCarView(ListView):

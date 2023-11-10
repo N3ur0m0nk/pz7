@@ -6,7 +6,6 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, CreateView, DetailView, UpdateView, ListView
 
 from mysite.anketa.models import Vopros
-from mysite.car.models import MyCar
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
@@ -30,7 +29,7 @@ class VoprosUpdate(UpdateView):
 	model = Vopros
 	template_name_suffix = '_update_form'
 	fields = '__all__'
-	success_url = '/car/mycar/'
+	success_url = '/anketa/Vopros/'
 
 	def get_context_data(self, *, object_list=None, **kwargs):
 		context = super(VoprosUpdate,self).get_context_data(**kwargs)
@@ -45,8 +44,8 @@ class VoprosUpdate(UpdateView):
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class VoprosDetail(DetailView):
 	model = Vopros
-	context_object_name = 'mycar_one'
-	success_url = '/car/mycar/'
+	context_object_name = 'myanketa_one'
+	success_url = '/anketa/Vopros/'
 
 	def get_context_data(self, *, object_list=None, **kwargs):
 		context = super(VoprosDetail,self).get_context_data(**kwargs)
@@ -61,8 +60,8 @@ class VoprosDetail(DetailView):
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class VoprosCreate(CreateView):
 	model = Vopros
-	context_object_name = 'mycar_one'
-	success_url = '/car/mycar/'
+	context_object_name = 'myanketa_one'
+	success_url = '/anketa/Vopros/'
 
 	template_name_suffix = '_create_form'
 	fields = '__all__'
@@ -79,7 +78,7 @@ class VoprosCreate(CreateView):
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class VoprosDelete(DeleteView):
 	model = Vopros
-	success_url = '/car/mycar/'
+	success_url = '/anketa/Vopros/'
 
 
 
